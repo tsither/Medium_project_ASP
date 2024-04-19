@@ -1,0 +1,105 @@
+product {
+	rubberColor   Forehand 
+    rubberColor    Backhand
+	rubberMaterial	Rubbers
+    Style   Style 2
+	bladeMaterial   BladeMaterial 2
+    bladeShape  BladeShape 3
+    grip    Grip 3
+    luck    Lucky 3
+    spongeWidth    SpongeWidth
+
+}
+enumeration Style {
+    Offensive
+    Defensive
+    Custom
+}
+
+enumeration rubberColor {
+	Red
+	Black
+	Pink
+	Blue
+}
+
+enumeration rubberMaterial {
+    Inverted
+    Short_Pips
+    Long_Pips
+    Anti_topspin
+}
+
+enumeration spongeWidth {
+    attribute mm
+    '1.8mm (fastest)' = ( 18 )
+    '2.0mm (faster)' = ( 20 )
+    '2.2mm (slower)' = ( 22 )
+    '2.3mm (slowest)' = ( 23 )
+}
+
+enumeration bladeMaterial{
+    Wood
+    Carbon_fiber
+}
+
+enumeration bladeShape{
+    Cyber
+    Elliptical
+}
+
+enumeration grip{
+    Yes
+    No
+}
+
+enumeration luck {
+    Yes
+    No
+}
+
+behavior {
+	require Forehand != Backhand
+}
+
+behavior {
+	condition Style = Offensive
+	require BladeShape = Cyber
+}
+
+behavior {
+    condition Style = Offensive
+    require BladeMaterial = Carbon_fiber
+}
+behavior {
+    condition Style = Offensive
+    require Rubbers = Inverted
+}
+behavior {
+    condition Style = Offensive
+    require SpongeWidth = '1.8mm (fastest)'
+}
+behavior {
+	condition Style = Defensive
+	require BladeShape = Elliptical
+}
+
+behavior {
+    condition Style = Defensive
+    require BladeMaterial = Wood
+}
+
+behavior {
+    condition Style = Defensive
+    require Rubbers = Long_Pips
+}
+behavior {
+    condition Style = Defensive
+    require SpongeWidth = '2.3mm (slowest)'
+}
+
+behavior {
+	combinations  (Lucky	 Grip)
+	allow         (Yes       No)
+	allow         (No        Yes)
+}
